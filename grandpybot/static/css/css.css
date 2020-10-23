@@ -1,0 +1,49 @@
+.map
+{
+    width: 50%;
+    height: 100px;
+    overview: hidden;
+
+}
+
+html, body
+{
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+[class*="col"]
+{
+  background-color: lightblue;
+  border: 0.2px solid blue;
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+#interet
+{
+}
+
+section
+{
+}
+
+footer
+{
+}
+
+
+
+#button
+{
+    line-height: 20px;
+}
+
+.progress
+{
+    margin-left: auto;
+    margin-right: auto;
+}
