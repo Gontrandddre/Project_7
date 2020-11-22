@@ -15,6 +15,7 @@ pytest = "*"
 coverage = "*"
 pytest-coverage = "*"
 pytest-cov = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
