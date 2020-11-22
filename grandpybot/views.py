@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, request, jsonify, url_for
-from .methods import ParseMode
+from .methods import ParseMode, Gmaps, Wiki
 
 app = Flask(__name__)
 
@@ -12,34 +12,27 @@ def add_datas():
     XXX
     """
 
-    input_user = request.args.get('place', type=str)
-    place = ParseMode(input_user)
-
-    if input_user == "":
+    request_user = request.args.get('place', type=str)
+    place = ParseMode(request_user)
+    
+    if request_user == "":
         place.emptyInput()
-
+        wiki = None
 
     else:
         place.cleanInput()
+        place = Gmaps(place.user_input_cleaned)
         place.geocodingPlace()
-        place.wikipediaSearch()
+        
+        wiki = Wiki(place.lat, place.lng)
+        wiki.title()
+        wiki.content()
+        wiki = wiki.content_wiki
 
-    print(place.address, place.lat, place.lng, place.wiki)
     return jsonify(address=place.address,
                    lat=place.lat,
                    lng=place.lng,
-                   wiki=place.wiki)
-
-
-# @app.route('/_add_datas')
-# def add_datas():
-#
-#     input_user = request.args.get("place", type=str)
-#     place = ParseMode(input_user)
-#
-#     placeJson = jsonify(adress = place.user_input)
-#     return placeJson
-
+                   wiki=wiki)
 
 @app.route('/')
 def home():

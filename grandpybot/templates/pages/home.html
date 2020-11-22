@@ -23,15 +23,15 @@
                 <div>Cette article permet de comprendre l'intérêt de cette application basée sur Flask. En effet elle permet de raconter une histoire sur un lieu.</div>
             </article>
 
-            <article class="col-12 col-md-10">
+            <article class="col-12 col-md-10 main">
 
                 <div class="row" >
 
                     <div id="thread" class="col-12" >
-                        <div class="media media mr-3 ml-5">
+                        <div class="media media mr-3 ml-5 first">
                             <div class="media2 align-self-center media-body">
                                 <!-- First GP message -->
-                                <div class="messageRight text-right" style="border: 2px solid red"> Alors mon petit bonhomme, ou veux tu aller ? </div>
+                                <div class="messageRight text-right" style="border: 2px solid red"> Alors mon petit bonhomme, où veux-tu aller ? </div>
                             </div>
                             <img class="avatar align-self-center ml-3" src="/static/img/avatar_gp.png" alt="avatar grandpy">
                         </div>
@@ -43,7 +43,7 @@
                     <div class="w-100">
                         <div class="col">
                             <form>
-                                    <input type="text" placeholder="zone 51.." size="40"  id="place" name="place"/>
+                                    <input type="text" size="40"  id="place" name="place"/>
                                     <input type="text" style="display:none"/> <!-- keypress ENTER solution .. Need 2 input text to cancel this pbm -->
                                     <input type="button" value="On y va !" id="button" class="btn btn-success"/>
                             </form>
@@ -79,12 +79,12 @@
 
         <footer class="row">
             <div class="col-6 col-md-6">
-                <div>Copyright &copy; - Tous droits réservés //
+                <div id="copyrigth">Copyright &copy; - Tous droits réservés //
                     <script>document.write( new Date().getUTCFullYear() );</script>
                 </div>
             </div>
             <div class="col-6 col-md-6">
-                <a href="https://github.com/Gontrandddre"><img class="logo" src="/static/img/github.png" alt="Logo github"></a>
+                <a href="https://github.com/Gontrandddre"><img id="github" src="/static/img/github.png" alt="Logo github"></a>
             </div>
         </footer>
     </div>

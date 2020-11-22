@@ -15,14 +15,22 @@ $(document).ready(function () {
             {place: $('input[name="place"]').val()}
             )
             .done(function(data) {
-                var lat = $('#lat').text(data.lat);
-                $('#lng').text(data.lng);
-                $('#address').text(data.address);
-                thread($('#place').val(), 'left');
-                thread(data.address, 'right');
-                gmapsResponse();
-                initMap();
-                thread(data.wiki, 'right');
+                if (data.lng === 0) {
+                    $('#lat').text(data.lat);
+                    $('#lng').text(data.lng);
+                    $('#address').text(data.address);
+                    thread($('#place').val(), 'left');
+                    thread(data.address, 'right');
+                } else {
+                    $('#lat').text(data.lat);
+                    $('#lng').text(data.lng);
+                    $('#address').text(data.address);
+                    thread($('#place').val(), 'left');
+                    thread(data.address, 'right');
+                    gmapsResponse();
+                    initMap();
+                    thread(data.wiki, 'right');
+                }
 
                 console.log("second success");
             })
@@ -62,19 +70,19 @@ function thread(data, position) {
     if (position === 'left') {
         $('#thread').append('<div class="media ml-3 mr-5"></div>');
         $('.media:last').append('<div class="media2 align-self-center media-body"></div>');
-        $('.media2:last').append('<div class="messageLeft text-left" style="border: 2px solid red">' + data + '</div>');
+        $('.media2:last').append('<div class="messageLeft text-left" style="border: 2px solid red; margin-right:25%">' + data + '</div>');
         $('.media:last').prepend('<img class="avatar align-self-center mr-3" src="/static/img/avatar_user.png" alt="avatar user">')
     }
     else {
         $('#thread').append('<div class="media mr-3 ml-5"></div>');
         $('.media:last').append('<div class="media2 align-self-center media-body"></div>');
-        $('.media2:last').append('<div class="messageRight text-right" style="border: 2px solid red">' + data + '</div>');
+        $('.media2:last').append('<div class="messageRight text-right" style="border: 2px solid red; margin-left: 15%">' + data + '</div>');
         $('.media:last').append('<img class="avatar align-self-center ml-3" src="/static/img/avatar_gp.png" alt="avatar grandpy">')
     }
 };
 
 function gmapsResponse() {
-    $('#thread').append('<div class="map" style="border: 2px solid red"></div>')
+    $('#thread').append('<div class="map text-right" style="border: 2px solid red; position: relative; overflow: hidden" text-align=right></div>')
 };
 
 function initMap() {
