@@ -12,7 +12,7 @@ gmaps = googlemaps.Client(key=GG_APP_ID)
 
 class ParseMode():
     """
-    XXX 
+    Allow us to manage input user. 
     """
 
     def __init__(self, user_input):
@@ -28,7 +28,7 @@ class ParseMode():
 
     def emptyInput(self):
         """
-        XXX
+        Allows us to generate a response when input user is empty.
         """
 
         self.address = random.choice(GP_RESPONSE_NO_INPUT)
@@ -39,7 +39,7 @@ class ParseMode():
 
     def cleanInput(self):
         """
-        XXX
+        Allows us to cleaning input user.
         """
 
         input_lower = self.user_input.lower()
@@ -58,7 +58,7 @@ class ParseMode():
 
 class Gmaps():
     """
-    XXX
+    Allows us to use API googlemaps and find data from input user
     """
 
     def __init__(self, user_input_cleaned):
@@ -73,7 +73,7 @@ class Gmaps():
 
     def geocodingPlace(self):
         """
-        XXX
+        Allows us to return an adress, lat and lng from input user.
         """
 
         input_gmaps = "+".join(self.input.split())
@@ -100,7 +100,8 @@ class Gmaps():
 
 class Wiki():
     """
-    XXX
+    Allows us to use API Wikipedia to fin a content (anecdote).
+    To do this we use data from googlemaps API. 
     """
 
     def __init__(self, lat, lng):
@@ -115,7 +116,7 @@ class Wiki():
 
     def title(self):
         """
-        XXX
+        Allows us to find title of article, near lat and lng found with API Googlemaps.
         """
         
         coordinnates = '{}|{}'.format(self.lat, self.lng)
@@ -148,7 +149,8 @@ class Wiki():
 
     def content(self):
         """
-        XXX
+        Allows us to generate content from article. 
+        The returned content corresponds to a summary of the article 
         """
 
         s = requests.Session()

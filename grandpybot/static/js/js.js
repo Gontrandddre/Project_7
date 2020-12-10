@@ -70,19 +70,19 @@ function thread(data, position) {
     if (position === 'left') {
         $('#thread').append('<div class="media ml-3 mr-5"></div>');
         $('.media:last').append('<div class="media2 align-self-center media-body"></div>');
-        $('.media2:last').append('<div class="messageLeft text-left" style="border: 2px solid red; margin-right:25%">' + data + '</div>');
+        $('.media2:last').append('<div class="messageLeft text-left" style="border: 2px solid grey; margin-right:25%; border-radius:10px; height:28px">' + data + '</div>');
         $('.media:last').prepend('<img class="avatar align-self-center mr-3" src="/static/img/avatar_user.png" alt="avatar user">')
     }
     else {
         $('#thread').append('<div class="media mr-3 ml-5"></div>');
         $('.media:last').append('<div class="media2 align-self-center media-body"></div>');
-        $('.media2:last').append('<div class="messageRight text-right" style="border: 2px solid red; margin-left: 15%">' + data + '</div>');
+        $('.media2:last').append('<div class="messageRight text-right" style="border: 2px solid grey; margin-left: 15%; border-radius:10px">' + data + '</div>');
         $('.media:last').append('<img class="avatar align-self-center ml-3" src="/static/img/avatar_gp.png" alt="avatar grandpy">')
     }
 };
 
 function gmapsResponse() {
-    $('#thread').append('<div class="map text-right" style="border: 2px solid red; position: relative; overflow: hidden" text-align=right></div>')
+    $('#thread').append('<div class="map text-right" style="border: 2px solid grey; border-radius:10px; position: relative; overflow: hidden" text-align=right></div>')
 };
 
 function initMap() {
@@ -93,7 +93,6 @@ function initMap() {
     var mapOptions = {
         zoom: 10,
         center: location
-//	    mapTypeId: ''
     };
     var map = new google.maps.Map(document.getElementById("thread").lastChild, mapOptions);
 

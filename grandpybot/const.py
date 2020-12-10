@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from os import environ
 from stop_words import get_stop_words
 
 STOP_WORDS = get_stop_words("fr")
 NO_CHARS_LIST = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "{", "}", ";", ":", ",", ".", "/", "<", ">", "?", "|", "`", "~", "-", "=", "_", "+", "&", "'", "§", "°", "^", "¨", "%", "`", "£", "-", "_"]
-GG_APP_ID = "AIzaSyAQzwNornfEf_OqT0rjyV9AzDri_mkaV78"
+GG_APP_ID = environ.get('GG_APP_ID')
 
 
 GP_RESPONSE_ADDRESS = [
@@ -28,7 +29,7 @@ GP_RESPONSE_NO_ADDRESS = [
 ]
 
 GP_RESPONSE_WIKIPEDIA = [
-    "Le savais-tu ?",
+    "Le savais-tu ? ",
     "Voici une petite anecdote ! ",
     "Incroyable, n'est-ce pas ?! ",
     "A mon âge, se souvenir de ça ! "

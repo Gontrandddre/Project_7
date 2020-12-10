@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/_add_datas')
 def add_datas():
     """
-    XXX
+    Allows to generate data from methods and return a json data to js.js
     """
 
     request_user = request.args.get('place', type=str)
@@ -36,19 +36,10 @@ def add_datas():
 
 @app.route('/')
 def home():
+    """
+    Return template home.html.
+    """
     return render_template('pages/home.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('pages/contact.html')
-
-@app.route('/about')
-def about():
-    return render_template('pages/about.html')
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template('errors/404.html'), 404
 
 if __name__ == "__main__":
     app.run()

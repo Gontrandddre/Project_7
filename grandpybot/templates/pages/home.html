@@ -2,56 +2,46 @@
 
 {% block body %}
 
-    <div class=container-fluid">
+    <div class="container-fluid">
 
-        <header class="row">
-
-                <nav class="col-12 col-md-5 navbar navbar-expand navbar-dark">
-                    {% include 'layouts/partials/nav.html' %}
-                </nav>
-                <div class="col-8 col-md-5">
-                    <h2>Un lieu, une histoire...</h2>
+        <header class="row" style="background-color: #00E0FF">
+                <div class="col-12 col-md-4">
+                    <h1 style="color:white; border: 5px solid white; border-radius:10px">GrandPy Bot</h1>
                 </div>
-                <div class="col-4 col-md-2">
+                <div class="col-6 col-md-4">
+                    <h2 style="color:white">Une adresse, une anecdote !</h2>
+                </div>
+                <div class="col-6 col-md-4">
                     <img class="logo" src="/static/img/logo.png" alt="Logo de l'application" title="Logo image">
                 </div>
         </header>
 
         <section class="row">
 
-            <article class="col-12 col-md-2" id="interet">
-                <div>Cette article permet de comprendre l'intérêt de cette application basée sur Flask. En effet elle permet de raconter une histoire sur un lieu.</div>
+            <article class="col-12 col-md-2 d-flex flex-column justify-content-center align-items-center" id="interet">
+                <div class="" style="margin: 15px 15px; padding:5px 5px; text-align: center; font-size:20px; line-height: 30px;background-color: #00E0FF; color:white; border-radius: 15px;">Propose une addresse à GrandPy Bot ! Il aura certainement une anecdote à te communiquer 🙂</div>
             </article>
 
             <article class="col-12 col-md-10 main">
-
                 <div class="row" >
-
-                    <div id="thread" class="col-12" >
+                    <div id="thread" class="col-12" style="min-height:200px">
                         <div class="media media mr-3 ml-5 first">
                             <div class="media2 align-self-center media-body">
-                                <!-- First GP message -->
-                                <div class="messageRight text-right" style="border: 2px solid red"> Alors mon petit bonhomme, où veux-tu aller ? </div>
+                                <div class="messageRight text-right" style="border: 2px solid grey; border-radius:10px"> Alors mon petit bonhomme, où veux-tu aller ? </div>
                             </div>
                             <img class="avatar align-self-center ml-3" src="/static/img/avatar_gp.png" alt="avatar grandpy">
                         </div>
-
-                        <!-- Code is coming (GP message gmaps / map / GP message wiki / wikipedia -->
-
                     </div>
-
                     <div class="w-100">
                         <div class="col">
                             <form>
-                                    <input type="text" size="40"  id="place" name="place"/>
-                                    <input type="text" style="display:none"/> <!-- keypress ENTER solution .. Need 2 input text to cancel this pbm -->
+                                    <input type="text" size="40"  id="place" name="place" style="border-radius:10px"/>
+                                    <input type="text" style="display:none"/> 
                                     <input type="button" value="On y va !" id="button" class="btn btn-success"/>
                             </form>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="col">
                         <div class="progress center-block" style="width:200px">
@@ -61,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" style="display:none">
                     <div class="col">
                         <div id="address">address</div>
                     </div>
@@ -72,19 +62,17 @@
                         <div id="lng">lng</div>
                     </div>
                 </div>
-
             </article>
-
         </section>
 
-        <footer class="row">
-            <div class="col-6 col-md-6">
+        <footer class="row " style="background-color: #FFE0FF">
+            <div class="col-6 d-flex flex-row justify-content-center align-items-center">
                 <div id="copyrigth">Copyright &copy; - Tous droits réservés //
                     <script>document.write( new Date().getUTCFullYear() );</script>
                 </div>
             </div>
-            <div class="col-6 col-md-6">
-                <a href="https://github.com/Gontrandddre"><img id="github" src="/static/img/github.png" alt="Logo github"></a>
+            <div class="col-6 d-flex flex-row justify-content-center align-items-center">
+                <a href="https://github.com/Gontrandddre/Project_7"><img id="github" src="/static/img/github.png" alt="Logo github"></a>
             </div>
         </footer>
     </div>

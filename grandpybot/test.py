@@ -36,7 +36,6 @@ class TestGmaps():
 		lat = self.place.lat
 		lng = self.place.lng
 
-		# assert self.place.geocodingPlace() == (48.856614, 2.3522219)
 		assert lat == 48.856614
 		assert lng == 2.3522219
 
@@ -107,10 +106,11 @@ def test_api_wikipedia():
 	assert response.status_code == 200
 
 #TEST RAISE ERROR
-# def test_address_no_found():
-# 	error=Gmaps('rtyherhsthdryhdgdrthyryh')
-# 	with pytest.raises(AssertionError):
-# 		error.geocodingPlace()
+
+def test_address_not_found():
+	error=Gmaps('rtyherhsthdryhdgdrthyryh')
+	with pytest.raises(AssertionError):
+		error.geocodingPlace()
 
 # class test_api_gmaps_response():
 # Mocks
