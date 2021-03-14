@@ -10,14 +10,12 @@ from .const import *
 import os
 from os import environ
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 
 load_dotenv()
 
-print('<>>>>>>>>>>>')
-print(os.environ)
 print(environ.get("GG_APP_ID"))
-
+print(dotenv_values(".env")["GG_APP_ID"])
 gmaps = googlemaps.Client(key=environ.get("GG_APP_ID"))
 
 class ParseMode():
