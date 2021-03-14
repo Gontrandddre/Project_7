@@ -16,6 +16,7 @@ load_dotenv()
 
 print(environ.get("GG_APP_ID"))
 print(dotenv_values(".env")["GG_APP_ID"])
+
 gmaps = googlemaps.Client(key=environ.get("GG_APP_ID"))
 
 class ParseMode():
