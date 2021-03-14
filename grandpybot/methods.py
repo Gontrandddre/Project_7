@@ -16,9 +16,9 @@ load_dotenv()
 
 print('<>>>>>>>>>>>')
 print(os.environ)
-print(os.getenv("GG_APP_ID"))
+print(environ.get("GG_APP_ID"))
 
-gmaps = googlemaps.Client(key=os.getenv("GG_APP_ID"))
+gmaps = googlemaps.Client(key=environ.get("GG_APP_ID"))
 
 class ParseMode():
     """
