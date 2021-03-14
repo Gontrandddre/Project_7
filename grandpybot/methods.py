@@ -7,8 +7,18 @@ import random
 import requests
 from unidecode import unidecode
 from .const import *
+import os
+from os import environ
 
-gmaps = googlemaps.Client(key=GG_APP_ID)
+from dotenv import load_dotenv
+
+load_dotenv()
+
+print('<>>>>>>>>>>>')
+print(os.environ)
+print(os.getenv("GG_APP_ID"))
+
+gmaps = googlemaps.Client(key=os.getenv("GG_APP_ID"))
 
 class ParseMode():
     """

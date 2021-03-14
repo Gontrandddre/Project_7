@@ -6,8 +6,6 @@ from stop_words import get_stop_words
 
 STOP_WORDS = get_stop_words("fr")
 NO_CHARS_LIST = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "{", "}", ";", ":", ",", ".", "/", "<", ">", "?", "|", "`", "~", "-", "=", "_", "+", "&", "'", "§", "°", "^", "¨", "%", "`", "£", "-", "_"]
-GG_APP_ID = environ.get('GG_APP_ID')
-
 
 GP_RESPONSE_ADDRESS = [
     "Très bien ! Nous allons de ce côté: ",

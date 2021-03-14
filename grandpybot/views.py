@@ -3,10 +3,12 @@
 
 from flask import Flask, render_template, request, jsonify, url_for
 from .methods import ParseMode, Gmaps, Wiki
+import os
 from os import environ
+from dotenv import load_dotenv
 
 app = Flask(__name__)
-app.config['GG_APP_ID'] = environ.get('GG_APP_ID')
+app.config['GG_APP_ID'] = os.getenv("GG_APP_ID")
 
 @app.route('/_add_datas')
 def add_datas():
