@@ -19,8 +19,11 @@ To do so, they will just have to ask GrandPy who will give an answer.
 At this moment u can visualize site on: https://flask-grandpybot-gda.herokuapp.com/
 
 **STATUT**: Production
+
 **SERVEUR**: Heroku
+
 **URL**: https://flask-grandpybot-gda.herokuapp.com/
+
 **Version:**
 - Version 1: 2020
 
