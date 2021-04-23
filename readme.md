@@ -20,6 +20,10 @@ At this moment u can visualize site on: https://flask-grandpybot-gda.herokuapp.c
 
 **STATUT**: Production
 
+**SERVEUR**: Heroku
+
+**URL**: https://flask-grandpybot-gda.herokuapp.com/
+
 **Version:**
 - Version 1: 2020
 
