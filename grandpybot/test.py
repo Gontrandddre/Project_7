@@ -82,7 +82,7 @@ def test_api_google():
 
 	params = {
 			"address": "Paris, France",
-			"key": GG_APP_ID,
+			"key": environ.get("GG_APP_ID"),
 		}
 
 	response = requests.get(url=url, params=params)
@@ -106,33 +106,42 @@ def test_api_wikipedia():
 
 	assert response.status_code == 200
 
-#TEST RAISE ERROR
+def test_api_geocoding(monkeypatch):
+	api_result = [
+					{'address_components':
+						[
+							{'long_name': 'Paris', 'short_name': 'Paris', 'types': ['locality', 'political']},
+							{'long_name': 'Paris', 'short_name': 'Paris', 'types': ['administrative_area_level_2', 'political']},
+							{'long_name': 'Île-de-France', 'short_name': 'IDF', 'types': ['administrative_area_level_1', 'political']},
+							{'long_name': 'France', 'short_name': 'FR', 'types': ['country', 'political']}
+						], 
+					'formatted_address': 'Paris, France',
+					'geometry': {'bounds':
+									{'northeast': 
+										{'lat': 48.9021449,
+										'lng': 2.4699208},
+										'southwest': {'lat': 48.815573,
+													  'lng': 2.224199}},
+										'location': {'lat': 48.856614,
+													 'lng': 2.3522219},
+										'location_type': 'APPROXIMATE',
+										'viewport': {'northeast':
+														{'lat': 48.9021449,
+														 'lng': 2.4699208},
+													'southwest': {'lat': 48.815573,
+													              'lng': 2.224199}}
+								},
+					'place_id': 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ',
+					'types': ['locality', 'political']
+					}
+				]
 
-def test_address_not_found():
-	error=Gmaps('rtyherhsthdryhdgdrthyryh')
-	with pytest.raises(AssertionError):
-		error.geocodingPlace()
-
-# class test_api_gmaps_response():
-# Mocks
-
-# class test_api_wiki_response():
-# Mocks
-
-# def test_http_return(monkeypatch):
-#     results = [
-#         {
-#             "key1": "value1" ,
-#             "key2": "value2" ,
-#             "key3": "value3" ,
-#             "key4": "value4"
-#         }]
-
-#     def mockreturn(request):
-#         return BytesIO(json.dumps(results).encode())
-
-#     place = "Paris"
-#     element = ParseMode("Paris")
-#     print(urllib.request.urlopen)
-#     monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
-#     assert element.content(place) == results
+	def mockreturn(foo, bar):
+		return api_result
+	
+	monkeypatch.setattr(googlemaps.Client, 'geocode', mockreturn)
+	geo = Gmaps('Paris')
+	geo.geocodingPlace()
+	assert geo.lat == 48.856614
+	assert geo.lng == 2.3522219
+	assert 'Paris, France' in geo.address
