@@ -18,15 +18,12 @@
         <!-- link css & js files -->
         <link rel="stylesheet" href="/static/css/css.css">
         <script src="/static/js/js.js"></script>
-        <script text="text/javascript">
+        <script>
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
         </script>
 
         <!-- link googlemaps js  !!!!!!!!!! &callback=initMap !!!!!!!! -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQzwNornfEf_OqT0rjyV9AzDri_mkaV78&callback=initMap" type="text/javascript"></script>
-
-        <!-- error favicon error 404 -->
-        <link rel="shortcut icon" href="">
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQzwNornfEf_OqT0rjyV9AzDri_mkaV78&callback=initMap"></script>
 
         <title>GrandPy Bot</title>
 
