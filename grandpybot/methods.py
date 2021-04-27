@@ -2,23 +2,31 @@
 # -*- coding: utf-8 -*-
 
 import googlemaps
+
 # import wikipedia
 import random
 import requests
 from unidecode import unidecode
-from .const import *
-import os
+from .const import (
+    GP_RESPONSE_NO_INPUT,
+    NO_CHARS_LIST,
+    STOP_WORDS,
+    GP_RESPONSE_NO_ADDRESS,
+    GP_RESPONSE_ADDRESS,
+    GP_RESPONSE_WIKIPEDIA
+)
 from os import environ
 
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 
 load_dotenv()
 
 gmaps = googlemaps.Client(key=environ.get("GG_APP_ID"))
 
-class ParseMode():
+
+class ParseMode:
     """
-    Allow us to manage input user. 
+    Allow us to manage input user.
     """
 
     def __init__(self, user_input):
@@ -49,7 +57,9 @@ class ParseMode():
         """
 
         input_lower = self.user_input.lower()
-        input_withoutCharsSpe = input_lower.translate({ord(c): " " for c in NO_CHARS_LIST})
+        input_withoutCharsSpe = input_lower.translate(
+            {ord(c): " " for c in NO_CHARS_LIST}
+        )
         input_no_accent = unidecode(input_withoutCharsSpe)
         input_split = input_no_accent.split()
 
@@ -57,12 +67,12 @@ class ParseMode():
             if element in STOP_WORDS:
                 input_split.remove(element)
 
-        self.user_input_cleaned = ' '.join(input_split)
+        self.user_input_cleaned = " ".join(input_split)
 
         return self.user_input_cleaned
 
 
-class Gmaps():
+class Gmaps:
     """
     Allows us to use API googlemaps and find data from input user
     """
@@ -87,8 +97,8 @@ class Gmaps():
 
         try:
             self.address = geocode_result[0]["formatted_address"]
-            self.lat = (geocode_result[0]["geometry"]["location"]["lat"])
-            self.lng = (geocode_result[0]["geometry"]["location"]["lng"])
+            self.lat = geocode_result[0]["geometry"]["location"]["lat"]
+            self.lng = geocode_result[0]["geometry"]["location"]["lng"]
 
         except IndexError:
             self.address = "No address found"
@@ -100,14 +110,13 @@ class Gmaps():
         else:
             self.address = random.choice(GP_RESPONSE_ADDRESS) + self.address
 
-
         return self.address, self.lat, self.lng
 
 
-class Wiki():
+class Wiki:
     """
     Allows us to use API Wikipedia to fin a content (anecdote).
-    To do this we use data from googlemaps API. 
+    To do this we use data from googlemaps API.
     """
 
     def __init__(self, lat, lng):
@@ -122,10 +131,11 @@ class Wiki():
 
     def title(self):
         """
-        Allows us to find title of article, near lat and lng found with API Googlemaps.
+        Allows us to find title of article,
+        near lat and lng found with API Googlemaps.
         """
-        
-        coordinnates = '{}|{}'.format(self.lat, self.lng)
+
+        coordinnates = "{}|{}".format(self.lat, self.lng)
 
         s = requests.Session()
 
@@ -137,17 +147,17 @@ class Wiki():
             "gscoord": coordinnates,
             "gslimit": "10",
             "gsradius": "5000",
-            "action": "query"
+            "action": "query",
         }
 
         r = s.get(url=url, params=params)
         data = r.json()
 
-        places = data['query']['geosearch']
+        places = data["query"]["geosearch"]
 
         list_title = []
         for place in places:
-            list_title.append(place['title'])
+            list_title.append(place["title"])
 
         self.title_wiki = random.choice(list_title)
 
@@ -155,8 +165,8 @@ class Wiki():
 
     def content(self):
         """
-        Allows us to generate content from article. 
-        The returned content corresponds to a summary of the article 
+        Allows us to generate content from article.
+        The returned content corresponds to a summary of the article
         """
 
         s = requests.Session()
@@ -169,17 +179,17 @@ class Wiki():
             "prop": "extracts",
             "titles": self.title_wiki,
             "exintro": "1",
-            "explaintext": "1"
+            "explaintext": "1",
         }
 
         r = s.get(url=url, params=params)
         data = r.json()
 
-        contents = data['query']['pages']
+        contents = data["query"]["pages"]
 
         for key, value in contents.items():
-            self.content_wiki = random.choice(GP_RESPONSE_WIKIPEDIA) + value['extract']
+            self.content_wiki = (
+                random.choice(GP_RESPONSE_WIKIPEDIA) + value["extract"]
+            )
 
-        return value['extract']
-
-
+        return value["extract"]

@@ -1,24 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, jsonify, url_for
+from flask import Flask, render_template, request, jsonify
 from .methods import ParseMode, Gmaps, Wiki
-import os
 from os import environ
-from dotenv import load_dotenv
 
 app = Flask(__name__)
-app.config['GG_APP_ID'] = environ.get("GG_APP_ID")
+app.config["GG_APP_ID"] = environ.get("GG_APP_ID")
 
-@app.route('/_add_datas')
+
+@app.route("/_add_datas")
 def add_datas():
     """
     Allows to generate data from methods and return a json data to js.js
     """
 
-    request_user = request.args.get('place', type=str)
+    request_user = request.args.get("place", type=str)
     place = ParseMode(request_user)
-    
+
     if request_user == "":
         place.emptyInput()
         wiki = None
@@ -27,7 +26,7 @@ def add_datas():
         place.cleanInput()
         place = Gmaps(place.user_input_cleaned)
         place.geocodingPlace()
-        
+
         wiki = Wiki(place.lat, place.lng)
         wiki.title()
         wiki.content()
@@ -38,12 +37,14 @@ def add_datas():
                    lng=place.lng,
                    wiki=wiki)
 
-@app.route('/')
+
+@app.route("/")
 def home():
     """
     Return template home.html.
     """
-    return render_template('pages/home.html')
+    return render_template("pages/home.html")
+
 
 if __name__ == "__main__":
     app.run()
